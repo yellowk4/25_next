@@ -3,8 +3,11 @@ import Image from 'next/image';
 import logoImg from '@/assets/logo.png';
 import classes from './main-header.module.css';
 import MainHeaderBackground from './main-header-background';
+import NavLink from './nav-link';
 
 export default function MainHeader() {
+  //console.log('Executing'); // 서버에서 실행되기 때문에 브라우저 콘솔에 출력되지 않음
+
   return (
     <>
       <MainHeaderBackground />
@@ -20,10 +23,10 @@ export default function MainHeader() {
         <nav className={classes.nav}>
           <ul>
             <li>
-              <Link href="/meals">식사 둘러보기</Link>
+              <NavLink href="/meals">식사 둘러보기</NavLink>
             </li>
             <li>
-              <Link href="/community">미식가 커뮤니티</Link>
+              <NavLink href="/community">미식가 커뮤니티</NavLink>
             </li>
           </ul>
         </nav>
