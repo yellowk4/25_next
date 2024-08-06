@@ -1,13 +1,14 @@
 'use server';
 
 import { redirect } from 'next/navigation';
+
 import { saveMeal } from './meals';
 
 function isInvalidText(text) {
   return !text || text.trim() === '';
 }
 
-export async function shareMeal(formData) {
+export async function shareMeal(prevState, formData) {
   const meal = {
     title: formData.get('title'),
     summary: formData.get('summary'),
@@ -27,11 +28,11 @@ export async function shareMeal(formData) {
     !meal.image ||
     meal.image.size === 0
   ) {
-    // throw new Error('입력값이 올바르지 않습니다.');
-    return { message: '입력값이 올바르지 않습니다.' };
+    return {
+      message: 'Invalid input.',
+    };
   }
 
-  // console.log(meal);
-  await saveMeal(meal); // Promise 반환하기 때문에 await 사용
+  await saveMeal(meal);
   redirect('/meals');
 }
