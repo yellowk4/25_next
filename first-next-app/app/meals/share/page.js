@@ -9,6 +9,8 @@ import MealsFormSubmit from '@/components/meals/meals-form-submit';
 
 export default function ShareMealPage() {
   const [state, formAction] = useFormState(shareMeal, { message: null });
+  // state는 { message: null }로 초기화됩니다.
+  // formAction은 상태를 업데이트하는 함수입니다.
 
   return (
     <>
@@ -43,7 +45,7 @@ export default function ShareMealPage() {
             <textarea id="instructions" name="instructions" rows="10" required></textarea>
           </p>
           <ImagePicker label="Your image" name="image" />
-          {state.message && <p>{state.message}</p>}
+          {state.message && <p className="error">{state.message}</p>}
           <p className={classes.actions}>
             <MealsFormSubmit />
           </p>

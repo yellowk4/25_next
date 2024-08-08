@@ -3,6 +3,7 @@
 import { redirect } from 'next/navigation';
 
 import { saveMeal } from './meals';
+import { revalidatePath } from 'next/cache';
 
 function isInvalidText(text) {
   return !text || text.trim() === '';
@@ -29,10 +30,11 @@ export async function shareMeal(prevState, formData) {
     meal.image.size === 0
   ) {
     return {
-      message: 'Invalid input.',
+      message: '유효하지 않은 입력입니다.',
     };
   }
 
   await saveMeal(meal);
+  revalidatePath('/meals', 'layout'); // 식사 페이지의 캐시 재확인
   redirect('/meals');
 }
